@@ -1,0 +1,27 @@
+# 临时文件
+*.log
+*.tmp
+*.swp
+.DS_Store
+
+# IDE
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+
+# Maven
+target/
+*.class
+
+# OS
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# 凭据
+.env
+.env.local
+application-local.yaml

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>cn.iocoder</groupId>
+        <artifactId>yudao</artifactId>
+        <version>2.4.0-jdk8-snapshot</version>
+    </parent>
+
+    <artifactId>yudao-module-qms</artifactId>
+    <packaging>jar</packaging>
+    <name>${project.artifactId}</name>
+    <description>
+        QMS 质量追溯系统：
+        检验单/检验项/缺陷记录、AQL 抽样方案引擎（GB/T 2828.1）、批次谱系正反向追溯（BFS 图遍历）、
+        SPC 统计过程控制（X-Bar/R 控制图 + 判异规则）、不合格品处置规则引擎与 MRB 物料评审。
+        基于芋道 ruoyi-vue-pro 二次开发，独立模块，可单独部署也可作 yudao 子模块。
+    </description>
+
+    <dependencies>
+        <!-- Web & Security & MyBatis 标配（与 APS / SCADA 模块保持一致） -->
+        <dependency>
+            <groupId>cn.iocoder.boot</groupId>
+            <artifactId>yudao-spring-boot-starter-biz-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>cn.iocoder.boot</groupId>
+            <artifactId>yudao-spring-boot-starter-biz-security</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>cn.iocoder.boot</groupId>
+            <artifactId>yudao-spring-boot-starter-biz-mybatis</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>cn.iocoder.boot</groupId>
+            <artifactId>yudao-spring-boot-starter-biz-tenant</artifactId>
+        </dependency>
+
+        <!-- 系统模块（依赖权限/字典/用户/部门） -->
+        <dependency>
+            <groupId>cn.iocoder.boot</groupId>
+            <artifactId>yudao-module-system-api</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>cn.iocoder.boot</groupId>
+            <artifactId>yudao-module-infra-api</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <!-- ==================== 无第三方算法依赖 ==================== -->
+        <!-- QMS 的三大引擎（AQL 抽样查表 / 批次谱系 BFS / SPC 统计计算）全部用纯 Java 实现，
+             不引入 Timefold 等求解器或 commons-math3，减少依赖体积与升级风险。 -->
+
+        <!-- Lombok / Test -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+</project>
